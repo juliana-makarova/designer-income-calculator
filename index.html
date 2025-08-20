@@ -292,10 +292,10 @@
 
         <!-- Navigation -->
         <div class="flex justify-between items-center mb-8">
-            <button id="prev-btn" class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+            <button id="prev-btn" class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg font-normal hover:bg-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
                 <i class="fas fa-arrow-left mr-2"></i>Назад
             </button>
-            <button id="next-btn" class="px-8 py-3 bg-white text-gray-900 rounded-lg font-medium hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+            <button id="next-btn" class="px-8 py-3 bg-white text-gray-900 rounded-lg font-normal hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
                 Далее<i class="fas fa-arrow-right ml-2"></i>
             </button>
         </div>
@@ -305,16 +305,16 @@
             <div class="result-card rounded-2xl p-8 text-white mb-8">
                 <div class="flex justify-between items-start">
                     <div class="flex-1">
-                        <h2 class="text-3xl font-bold mb-2">Ваш персональный прогноз</h2>
+                        <h2 class="text-3xl font-normal mb-2">Ваш персональный прогноз</h2>
                         <p class="text-gray-300 mb-10">Основан на вашем профиле и рыночных данных</p>
                         
                         <div class="mb-8">
-                            <div class="text-4xl font-bold text-orange-accent mb-2" id="income-6months">+0 ₽</div>
+                            <div class="text-4xl font-normal text-orange-accent mb-2" id="income-6months">+0 ₽</div>
                             <div class="text-gray-300">Через 6 месяцев</div>
                         </div>
                         
                         <div class="mb-0">
-                            <div class="text-4xl font-bold text-orange-accent mb-2" id="income-12months">+0 ₽</div>
+                            <div class="text-4xl font-normal text-orange-accent mb-2" id="income-12months">+0 ₽</div>
                             <div class="text-gray-300">Через 12 месяцев</div>
                         </div>
                     </div>
@@ -329,7 +329,7 @@
                         <img src="./images/track-icon.png" alt="Track Icon" class="w-16 h-16 mb-3">
                         <h3>Рекомендуемый трек развития</h3>
                     </div>
-                    <div id="recommended-track" class="track-badge px-4 py-2 rounded-full font-medium mb-4" style="color: #ffffff !important;">
+                    <div id="recommended-track" class="track-badge px-4 py-2 rounded-full font-normal mb-4" style="color: #ffffff !important;">
                         Определяется...
                     </div>
                     <p id="track-description" class="text-gray-300">
@@ -372,10 +372,10 @@
                         Присоединяйтесь, чтобы получить практические кейсы, разборы работ и актуальные стратегии монетизации AI-навыков.
                     </p>
                     <div class="space-y-4">
-                        <button class="w-full bg-orange-accent hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-xl transition-colors">
+                        <button class="w-full bg-orange-accent hover:bg-orange-600 text-white font-normal py-4 px-8 rounded-xl transition-colors">
                             <i class="fab fa-telegram mr-2"></i>Подписаться на канал
                         </button>
-                        <button class="w-full bg-white hover:bg-gray-100 text-gray-900 font-bold py-4 px-8 rounded-xl transition-colors">
+                        <button class="w-full bg-white hover:bg-gray-100 text-gray-900 font-normal py-4 px-8 rounded-xl transition-colors">
                             <i class="fas fa-play mr-2"></i>Посмотреть бесплатный эфир
                         </button>
                     </div>
@@ -465,7 +465,7 @@
             const container = document.getElementById('quiz-container');
             
             let html = `
-                <h2 class="text-2xl font-bold mb-6">${question.title}</h2>
+                <h2 class="text-2xl font-normal mb-6">${question.title}</h2>
                 <div class="space-y-3">
             `;
 
