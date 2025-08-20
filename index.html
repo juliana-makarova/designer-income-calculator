@@ -227,6 +227,57 @@
             aspect-ratio: 1/1;
         }
 
+        /* === МОБИЛЬНАЯ АДАПТАЦИЯ === */
+        @media (max-width: 768px) {
+            /* Шапка - картинка сверху */
+            .header-container .flex {
+                flex-direction: column !important;
+            }
+            .header-text {
+                order: 2;
+                margin-top: 24px;
+            }
+            .header-image {
+                order: 1;
+                margin: 0 auto 0 auto !important;
+                width: 200px !important;
+                height: 200px !important;
+            }
+            
+            /* Блок "Ваш персональный прогноз" - картинка сверху */
+            .result-card .flex.justify-between {
+                flex-direction: column !important;
+            }
+            .result-card .header-image {
+                order: 1;
+                margin: 0 auto 24px auto !important;
+                width: 200px !important;
+                height: 200px !important;
+            }
+            .result-card .flex-1 {
+                order: 2;
+            }
+            
+            /* Блок "Рекомендуемый трек" - картинка сверху */
+            .bg-gray-800:has(img[src*="track-icon"]) {
+                text-align: center;
+            }
+            .bg-gray-800:has(img[src*="track-icon"]) img {
+                margin: 0 auto 16px auto !important;
+            }
+            
+            /* Уменьшаем отступы на мобильных */
+            .header-container {
+                padding: 20px !important;
+            }
+            .result-card {
+                padding: 24px !important;
+            }
+            .bg-gray-800 {
+                padding: 20px !important;
+            }
+        }
+
         /* === ЛОГОТИП BANG BANG EDUCATION === */
         .logo-container {
             display: flex;
