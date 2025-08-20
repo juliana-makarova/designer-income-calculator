@@ -116,6 +116,8 @@
             background-color: #ffffff !important;
             color: #1f2937 !important;
             text-align: left;
+            display: flex;
+            flex-direction: column;
         }
         .bg-gray-800 h3, .bg-gray-800 h4 {
             color: #1f2937 !important;
@@ -130,16 +132,22 @@
             font-size: 18px;
             font-weight: 400; /* Book начертание */
             line-height: 120%;
+            margin-top: auto;
         }
 
         /* === ИКОНКИ НА ПОСЛЕДНЕМ СЛАЙДЕ === */
         .bg-gray-800 .fas, .bg-gray-800 .fab {
             color: #ffffff !important;
             background-color: #ff6b35;
-            padding: 3px; /* было 8px, уменьшил на 5px */
+            padding: 8px;
             border-radius: 8px;
             margin-right: 12px;
             margin-bottom: 8px; /* добавляем отступ снизу от иконки */
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* === ТЕКСТЫ В СПИСКАХ === */
@@ -285,15 +293,15 @@
             <div class="result-card rounded-2xl p-8 text-white mb-8">
                 <div class="flex justify-between items-start">
                     <div class="flex-1">
-                        <h2 class="text-3xl font-bold mb-5">Ваш персональный прогноз</h2>
-                        <p class="text-gray-300 mb-8">Основан на вашем профиле и рыночных данных</p>
+                        <h2 class="text-3xl font-bold mb-2">Ваш персональный прогноз</h2>
+                        <p class="text-gray-300 mb-10">Основан на вашем профиле и рыночных данных</p>
                         
                         <div class="mb-8">
                             <div class="text-4xl font-bold text-orange-accent mb-2" id="income-6months">+0 ₽</div>
                             <div class="text-gray-300">Через 6 месяцев</div>
                         </div>
                         
-                        <div class="mb-8">
+                        <div class="mb-0">
                             <div class="text-4xl font-bold text-orange-accent mb-2" id="income-12months">+0 ₽</div>
                             <div class="text-gray-300">Через 12 месяцев</div>
                         </div>
@@ -304,7 +312,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-800 rounded-xl p-6 mb-8">
+                <div class="bg-gray-800 rounded-xl p-6 mb-8 mt-8">
                     <div class="flex flex-col items-start mb-4">
                         <i class="fas fa-route text-orange-accent mb-3"></i>
                         <h3>Рекомендуемый трек развития</h3>
