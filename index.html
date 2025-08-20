@@ -270,15 +270,11 @@
                 order: 2;
             }
             
-            /* Блок "Рекомендуемый трек" - картинка сверху */
-            .bg-gray-800:has(img[src*="track-icon"]) {
-                text-align: left;
-            }
+            /* Блок "Рекомендуемый трек" - иконка стандартного размера */
             .bg-gray-800:has(img[src*="track-icon"]) img {
                 margin: 0 0 16px 0 !important;
-                width: calc(100% - 40px) !important;
-                height: auto !important;
-                aspect-ratio: 1/1 !important;
+                width: 64px !important;
+                height: 64px !important;
             }
             
             /* Уменьшаем отступы на мобильных */
