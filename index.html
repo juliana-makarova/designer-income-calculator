@@ -147,34 +147,52 @@
 
         /* === НОВАЯ ШАПКА === */
         .header-container {
-            background: #212123;
+            background: #ffffff;
             border-radius: 16px;
             padding: 32px;
             margin-bottom: 32px;
         }
         .header-text h1 {
             font-weight: 500; /* Medium начертание */
-            color: #ffffff;
+            color: #161618;
+            font-size: 36px;
             margin-bottom: 16px;
         }
-        .header-text p {
-            color: #16161899;
-            font-size: 18px;
-            line-height: 1.5;
+        .header-text .subtitle {
+            font-weight: 400; /* Book начертание */
+            font-size: 20px;
+            line-height: 110%;
+            color: #161618;
+            margin-bottom: 16px;
+        }
+        .header-text .description {
+            font-weight: 400; /* Book начертание */
+            font-size: 20px;
+            line-height: 110%;
+            color: #161618;
+            margin-top: auto;
+        }
+        .header-text {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         .header-image {
-            background: #ffffff;
+            background: #f5f5f5;
             border-radius: 12px;
             padding: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 120px;
+            aspect-ratio: 1/1;
+            width: 200px;
+            height: 200px;
         }
         .header-image img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
+            aspect-ratio: 1/1;
         }
     </style>
 </head>
@@ -185,13 +203,13 @@
             <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div class="header-text">
                     <h1>Калькулятор дохода дизайнера</h1>
-                    <p>Сколько вы можете заработать на нейросетях в 2025-2026 году</p>
-                    <p class="text-gray-500">
+                    <p class="subtitle">Сколько вы можете заработать на нейросетях в 2025-2026 году</p>
+                    <p class="description">
                         Пройдите тест за 2-3 минуты и получите персональный прогноз
                     </p>
                 </div>
                 <div class="header-image">
-                    <img src="https://via.placeholder.com/150" alt="Calculator Icon">
+                    <img src="https://via.placeholder.com/200x200" alt="Calculator Icon">
                 </div>
             </div>
         </div>
