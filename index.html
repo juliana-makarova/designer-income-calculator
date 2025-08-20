@@ -152,8 +152,8 @@
         .header-container {
             background: #ffffff;
             border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
         }
         .header-text h1 {
             font-weight: 400; /* Book начертание */
@@ -182,15 +182,16 @@
             height: 100%;
         }
         .header-image {
-            background: transparent;
+            background: #f5f5f5;
             border-radius: 12px;
-            padding: 0;
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 350px;
             height: 350px;
             aspect-ratio: 1/1;
+            margin-left: auto;
         }
         .header-image img {
             max-width: 100%;
@@ -204,7 +205,7 @@
     <div class="container mx-auto px-4 py-8 max-w-4xl">
         <!-- Header -->
         <div class="header-container">
-            <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="flex justify-between items-center">
                 <div class="header-text">
                     <h1>Калькулятор дохода дизайнера</h1>
                     <p class="subtitle">Сколько вы можете заработать на нейросетях в 2025-2026 году</p>
