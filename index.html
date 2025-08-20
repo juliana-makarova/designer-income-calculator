@@ -240,8 +240,14 @@
             .header-image {
                 order: 1;
                 margin: 0 0 0 0 !important;
-                width: 200px !important;
-                height: 200px !important;
+                width: calc(100% - 40px) !important;
+                height: calc(100% - 40px) !important;
+                max-width: none !important;
+            }
+            .header-image img {
+                width: 100% !important;
+                height: auto !important;
+                aspect-ratio: 1/1 !important;
             }
             
             /* Блок "Ваш персональный прогноз" - картинка сверху */
@@ -251,8 +257,14 @@
             .result-card .header-image {
                 order: 1;
                 margin: 0 0 24px 0 !important;
-                width: 200px !important;
-                height: 200px !important;
+                width: calc(100% - 48px) !important;
+                height: auto !important;
+                max-width: none !important;
+            }
+            .result-card .header-image img {
+                width: 100% !important;
+                height: auto !important;
+                aspect-ratio: 1/1 !important;
             }
             .result-card .flex-1 {
                 order: 2;
@@ -264,6 +276,9 @@
             }
             .bg-gray-800:has(img[src*="track-icon"]) img {
                 margin: 0 0 16px 0 !important;
+                width: calc(100% - 40px) !important;
+                height: auto !important;
+                aspect-ratio: 1/1 !important;
             }
             
             /* Уменьшаем отступы на мобильных */
