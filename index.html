@@ -463,6 +463,12 @@
             const question = questions[index];
             const container = document.getElementById('quiz-container');
             
+            // Показываем шапку на всех слайдах кроме последнего
+            const headerContainer = document.querySelector('.header-container');
+            if (headerContainer) {
+                headerContainer.style.display = 'block';
+            }
+            
             let html = `
                 <h2 class="text-2xl font-normal mb-6">${question.title}</h2>
                 <div class="space-y-3">
@@ -589,6 +595,12 @@
             document.getElementById('quiz-container').style.display = 'none';
             document.querySelector('.flex.justify-between').style.display = 'none';
             document.getElementById('results-section').classList.remove('hidden');
+            
+            // Скрываем шапку на последнем слайде
+            const headerContainer = document.querySelector('.header-container');
+            if (headerContainer) {
+                headerContainer.style.display = 'none';
+            }
 
             document.getElementById('income-6months').textContent = `+${results.income6months.toLocaleString()} ₽`;
             document.getElementById('income-12months').textContent = `+${results.income12months.toLocaleString()} ₽`;
