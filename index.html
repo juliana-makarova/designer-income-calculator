@@ -43,8 +43,7 @@
             transition: all 0.3s ease;
         }
         .question-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            /* убираем анимацию приподнимания */
         }
 
         /* === ТАБЫ-ОПЦИИ === */
@@ -101,7 +100,7 @@
 
         /* === РЕЗУЛЬТАТЫ === */
         .result-card {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+            background: #212123; /* меняем на #212123 */
         }
         .track-badge { 
             background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
@@ -116,7 +115,8 @@
         .bg-gray-800 h3, .bg-gray-800 h4 {
             color: #1f2937 !important;
             font-size: calc(1em + 3px); /* увеличил на 3px */
-            margin-top: 8px; /* отступ от иконки */
+            margin-top: 0; /* убираем отступ от иконки */
+            margin-bottom: 16px; /* добавляем отступ снизу */
         }
         .bg-gray-800 ul, .bg-gray-800 ol, .bg-gray-800 div {
             color: #1f2937 !important;
@@ -129,6 +129,7 @@
             padding: 3px; /* было 8px, уменьшил на 5px */
             border-radius: 8px;
             margin-right: 12px;
+            margin-bottom: 8px; /* добавляем отступ снизу от иконки */
         }
 
         /* === ТЕКСТЫ В СПИСКАХ === */
@@ -143,24 +144,56 @@
         .mb-8 {
             margin-bottom: 16px !important; /* было 32px, уменьшил вдвое */
         }
+
+        /* === НОВАЯ ШАПКА === */
+        .header-container {
+            background: #212123;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+        .header-text h1 {
+            font-weight: 500; /* Medium начертание */
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        .header-text p {
+            color: #16161899;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .header-image {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+        }
+        .header-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body class="min-h-screen">
     <div class="container mx-auto px-4 py-8 max-w-4xl">
         <!-- Header -->
-        <div class="text-center mb-12">
-            <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6">
-                <i class="fas fa-calculator text-blue-600 text-2xl"></i>
+        <div class="header-container">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="header-text">
+                    <h1>Калькулятор дохода дизайнера</h1>
+                    <p>Сколько вы можете заработать на нейросетях в 2025-2026 году</p>
+                    <p class="text-gray-500">
+                        Пройдите тест за 2-3 минуты и получите персональный прогноз
+                    </p>
+                </div>
+                <div class="header-image">
+                    <img src="https://via.placeholder.com/150" alt="Calculator Icon">
+                </div>
             </div>
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">
-                Калькулятор дохода дизайнера
-            </h1>
-            <p class="text-xl text-gray-600 mb-2">
-                Сколько вы можете заработать на нейросетях в 2025-2026 году
-            </p>
-            <p class="text-gray-500">
-                Пройдите тест за 2-3 минуты и получите персональный прогноз
-            </p>
         </div>
 
         <!-- Progress Bar -->
@@ -212,10 +245,10 @@
                 </div>
 
                 <div class="bg-gray-800 rounded-xl p-6 mb-8">
-                    <h3 class="text-xl font-bold mb-4 flex items-center">
-                        <i class="fas fa-route text-orange-accent mr-3"></i>
-                        Рекомендуемый трек развития
-                    </h3>
+                    <div class="flex flex-col items-center text-center mb-4">
+                        <i class="fas fa-route text-orange-accent mb-3"></i>
+                        <h3 class="text-xl font-bold">Рекомендуемый трек развития</h3>
+                    </div>
                     <div id="recommended-track" class="track-badge inline-block px-4 py-2 rounded-full text-white font-medium mb-4">
                         Определяется...
                     </div>
@@ -226,26 +259,26 @@
 
                 <div class="grid md:grid-cols-2 gap-6 mb-8">
                     <div class="bg-gray-800 rounded-xl p-6">
-                        <h4 class="font-bold mb-3 flex items-center">
-                            <i class="fas fa-brain text-orange-accent mr-2"></i>
-                            Приоритетные AI-навыки
-                        </h4>
+                        <div class="flex flex-col items-center text-center mb-4">
+                            <i class="fas fa-brain text-orange-accent mb-3"></i>
+                            <h4 class="font-bold">Приоритетные AI-навыки</h4>
+                        </div>
                         <ul id="skills-list" class="text-gray-300 space-y-2"></ul>
                     </div>
                     <div class="bg-gray-800 rounded-xl p-6">
-                        <h4 class="font-bold mb-3 flex items-center">
-                            <i class="fas fa-clock text-orange-accent mr-2"></i>
-                            Временные рамки
-                        </h4>
+                        <div class="flex flex-col items-center text-center mb-4">
+                            <i class="fas fa-clock text-orange-accent mb-3"></i>
+                            <h4 class="font-bold">Временные рамки</h4>
+                        </div>
                         <div id="timeline" class="text-gray-300 space-y-2"></div>
                     </div>
                 </div>
 
                 <div class="bg-gray-800 rounded-xl p-6 mb-8">
-                    <h4 class="font-bold mb-4 flex items-center">
-                        <i class="fas fa-list-check text-orange-accent mr-2"></i>
-                        Следующие шаги
-                    </h4>
+                    <div class="flex flex-col items-center text-center mb-4">
+                        <i class="fas fa-list-check text-orange-accent mb-3"></i>
+                        <h4 class="font-bold">Следующие шаги</h4>
+                    </div>
                     <ol id="next-steps" class="text-gray-300 space-y-3"></ol>
                 </div>
 
@@ -399,6 +432,7 @@
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
             prevBtn.disabled = currentQuestion === 0;
+            prevBtn.style.display = currentQuestion === 0 ? 'none' : 'block';
 
             const currentQ = questions[currentQuestion];
             const hasAnswer = currentQ.multiple ? 
