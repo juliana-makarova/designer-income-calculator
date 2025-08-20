@@ -116,6 +116,14 @@
             color: #ffffff !important;
         }
 
+        /* === ТЕКСТ ПОД БЛОКОМ "СЛЕДУЮЩИЕ ШАГИ" === */
+        .text-center p {
+            font-weight: 400; /* Book начертание */
+            color: #ffffff !important;
+            text-shadow: none; /* убираем обводку */
+            -webkit-text-stroke: none; /* убираем обводку для webkit */
+        }
+
         /* === БЛОКИ С ТЕКСТОМ === */
         .bg-gray-800 {
             background-color: #ffffff !important;
@@ -129,8 +137,7 @@
             font-size: 24px;
             font-weight: 400; /* Book начертание */
             line-height: 110%;
-            margin-top: 0; /* убираем отступ от иконки */
-            margin-bottom: 40px; /* отступ 40px */
+            margin: 0; /* убираем все отступы */
         }
         .bg-gray-800 ul, .bg-gray-800 ol, .bg-gray-800 div, .bg-gray-800 p {
             color: #6a6a6b !important;
@@ -147,7 +154,7 @@
             padding: 8px;
             border-radius: 8px;
             margin-right: 12px;
-            margin-bottom: 8px; /* добавляем отступ снизу от иконки */
+            margin: 0; /* убираем все отступы */
             width: 60px;
             height: 60px;
             display: flex;
@@ -332,18 +339,22 @@
 
                 <div class="grid md:grid-cols-2 gap-6 mb-8">
                     <div class="bg-gray-800 rounded-xl p-6">
-                        <div class="flex flex-col items-start mb-4">
-                            <i class="fas fa-brain text-orange-accent mb-3"></i>
-                            <h4>Приоритетные AI-навыки</h4>
+                        <div class="flex flex-col items-start">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-brain text-orange-accent mr-3"></i>
+                                <h4>Приоритетные AI-навыки</h4>
+                            </div>
                         </div>
-                        <ul id="skills-list" class="space-y-2"></ul>
+                        <ul id="skills-list" class="space-y-2 mt-auto"></ul>
                     </div>
                     <div class="bg-gray-800 rounded-xl p-6">
-                        <div class="flex flex-col items-start mb-4">
-                            <i class="fas fa-clock text-orange-accent mb-3"></i>
-                            <h4>Временные рамки</h4>
+                        <div class="flex flex-col items-start">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-clock text-orange-accent mr-3"></i>
+                                <h4>Временные рамки</h4>
+                            </div>
                         </div>
-                        <div id="timeline" class="space-y-2"></div>
+                        <div id="timeline" class="space-y-2 mt-auto"></div>
                     </div>
                 </div>
 
@@ -356,7 +367,7 @@
                 </div>
 
                 <div class="text-center">
-                    <p class="text-gray-400 mb-6">
+                    <p class="text-white mb-6 font-normal">
                         📢 <strong>Узнать больше:</strong> Подробнее мы рассказываем в нашем телеграм канале и на бесплатных эфирах. 
                         Присоединяйтесь, чтобы получить практические кейсы, разборы работ и актуальные стратегии монетизации AI-навыков.
                     </p>
