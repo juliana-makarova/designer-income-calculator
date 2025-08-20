@@ -11,40 +11,118 @@
         .text-orange-accent { color: #ff6b35; }
         .bg-orange-accent { background-color: #ff6b35; }
         .border-orange-accent { border-color: #ff6b35; }
+
+        /* === ПОДКЛЮЧЕНИЕ ШРИФТОВ === */
+        @font-face {
+            font-family: 'Suisse Intl';
+            src: url('./fonts/SuisseIntl-Book.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Suisse Intl';
+            src: url('./fonts/SuisseIntl-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* === ЦВЕТА И ФОН === */
+        body { 
+            background-color: #E8eaed; 
+            font-family: 'Suisse Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 400;
+        }
+        #progress-track { background-color: #ffffff; }
+        .progress-bar { background: linear-gradient(90deg, #ff6b35 0%, #ff8c42 100%); }
+
+        /* === КАРТОЧКА ВОПРОСОВ === */
         .question-card { 
-            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+            background: #212123;
             transition: all 0.3s ease;
         }
         .question-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
+
+        /* === ТАБЫ-ОПЦИИ === */
         .option-button {
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            background-color: #252527;
+            border: 2px solid #2a2a2c;
+            color: #fff;
         }
-        .option-button:hover {
-            border-color: #ff6b35;
-            background-color: rgba(255, 107, 53, 0.1);
-        }
+        .option-button:hover { background-color: #2a2a2c; }
         .option-button.selected {
             border-color: #ff6b35;
             background-color: rgba(255, 107, 53, 0.2);
             color: #ff6b35;
         }
-        .progress-bar {
-            background: linear-gradient(90deg, #ff6b35 0%, #ff8c42 100%);
+        .option-button:disabled {
+            border-color: #2f2f31;
+            background-color: #2b2b2d;
+            opacity: 0.85;
+            cursor: not-allowed;
         }
+
+        /* === COVER РЕЖИМ ДЛЯ ТАБОВ === */
+        .option-button.cover {
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* === КНОПКИ === */
+        #prev-btn { 
+            border: 1px solid #6b7280;
+        }
+        #next-btn { background-color: #ffffff !important; }
+
+        /* === РАДИО-ИНДИКАТОР МЕНЬШЕ В 2 РАЗА === */
+        .option-button .w-6.h-6 { width: 12px !important; height: 12px !important; }
+        .option-button .w-3.h-3 { width: 6px !important; height: 6px !important; }
+
+        /* === ЗАГОЛОВКИ === */
+        h1, h2, h3, h4, h5, h6 { 
+            font-weight: 500; 
+            font-size: calc(1em + 2px);
+        }
+
+        /* === РЕЗУЛЬТАТЫ === */
         .result-card {
             background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
-            border: 1px solid #ff6b35;
         }
-        .track-badge {
-            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+        .track-badge { background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%); }
+
+        /* === БЛОКИ С ТЕКСТОМ === */
+        .bg-gray-800 {
+            background-color: #ffffff !important;
+            color: #1f2937 !important;
+        }
+        .bg-gray-800 h3, .bg-gray-800 h4 {
+            color: #1f2937 !important;
+        }
+        .bg-gray-800 ul, .bg-gray-800 ol, .bg-gray-800 div {
+            color: #1f2937 !important;
+        }
+
+        /* === ИКОНКИ НА ПОСЛЕДНЕМ СЛАЙДЕ === */
+        .bg-gray-800 .fas, .bg-gray-800 .fab {
+            color: #ffffff !important;
+            background-color: #ff6b35;
+            padding: 8px;
+            border-radius: 8px;
+            margin-right: 12px;
+        }
+
+        /* === ТЕКСТЫ В СПИСКАХ === */
+        .bg-gray-800 li, .bg-gray-800 div {
+            font-weight: 400;
         }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
+<body class="min-h-screen">
     <div class="container mx-auto px-4 py-8 max-w-4xl">
         <!-- Header -->
         <div class="text-center mb-12">
@@ -68,7 +146,7 @@
                 <span>Прогресс прохождения</span>
                 <span id="progress-text">0 из 8</span>
             </div>
-            <div class="w-full bg-gray-200 rounded-full h-2">
+            <div id="progress-track" class="w-full rounded-full h-2">
                 <div id="progress-bar" class="progress-bar h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
             </div>
         </div>
@@ -129,18 +207,14 @@
                             <i class="fas fa-brain text-orange-accent mr-2"></i>
                             Приоритетные AI-навыки
                         </h4>
-                        <ul id="skills-list" class="text-gray-300 space-y-2">
-                            <!-- Skills will be inserted here -->
-                        </ul>
+                        <ul id="skills-list" class="text-gray-300 space-y-2"></ul>
                     </div>
                     <div class="bg-gray-800 rounded-xl p-6">
                         <h4 class="font-bold mb-3 flex items-center">
                             <i class="fas fa-clock text-orange-accent mr-2"></i>
                             Временные рамки
                         </h4>
-                        <div id="timeline" class="text-gray-300 space-y-2">
-                            <!-- Timeline will be inserted here -->
-                        </div>
+                        <div id="timeline" class="text-gray-300 space-y-2"></div>
                     </div>
                 </div>
 
@@ -149,9 +223,7 @@
                         <i class="fas fa-list-check text-orange-accent mr-2"></i>
                         Следующие шаги
                     </h4>
-                    <ol id="next-steps" class="text-gray-300 space-y-3">
-                        <!-- Steps will be inserted here -->
-                    </ol>
+                    <ol id="next-steps" class="text-gray-300 space-y-3"></ol>
                 </div>
 
                 <div class="text-center">
@@ -182,99 +254,66 @@
 
     <script>
         const questions = [
-            {
-                id: 1,
-                title: "Ваш текущий статус в дизайне",
-                options: [
-                    { text: "Студент / начинающий (изучаю основы)", value: "student", multiplier: 1.0 },
-                    { text: "Junior дизайнер (до 2 лет опыта)", value: "junior", multiplier: 1.2 },
-                    { text: "Middle дизайнер (2-5 лет опыта)", value: "middle", multiplier: 1.5 },
-                    { text: "Senior дизайнер (5+ лет опыта)", value: "senior", multiplier: 1.8 },
-                    { text: "Арт-директор / Lead", value: "lead", multiplier: 2.0 }
-                ]
-            },
-            {
-                id: 2,
-                title: "Ваша основная специализация",
-                options: [
-                    { text: "UX/UI дизайн", value: "ux_ui", multiplier: 1.3 },
-                    { text: "Веб-дизайн", value: "web", multiplier: 1.2 },
-                    { text: "Графический дизайн", value: "graphic", multiplier: 1.1 },
-                    { text: "Иллюстрация", value: "illustration", multiplier: 1.4 },
-                    { text: "Брендинг", value: "branding", multiplier: 1.5 },
-                    { text: "Моушн-дизайн", value: "motion", multiplier: 1.6 },
-                    { text: "Продуктовый дизайн", value: "product", multiplier: 1.7 }
-                ]
-            },
-            {
-                id: 3,
-                title: "Как вы сейчас работаете?",
-                options: [
-                    { text: "В штате компании", value: "employment", track: "employment", multiplier: 1.2 },
-                    { text: "Фрилансер (работаю с разными клиентами)", value: "freelance", track: "b2b", multiplier: 1.5 },
-                    { text: "В агентстве/студии", value: "agency", track: "b2b", multiplier: 1.4 },
-                    { text: "Собственный бизнес/услуги", value: "business", track: "entrepreneur", multiplier: 2.0 },
-                    { text: "Пока не работаю в дизайне", value: "none", track: "employment", multiplier: 1.0 }
-                ]
-            },
-            {
-                id: 4,
-                title: "Ваш примерный доход в месяц",
-                options: [
-                    { text: "До 50 000 ₽", value: "under_50k", base: 35000 },
-                    { text: "50 000 - 100 000 ₽", value: "50_100k", base: 75000 },
-                    { text: "100 000 - 200 000 ₽", value: "100_200k", base: 150000 },
-                    { text: "200 000 - 350 000 ₽", value: "200_350k", base: 275000 },
-                    { text: "350 000 - 500 000 ₽", value: "350_500k", base: 425000 },
-                    { text: "Свыше 500 000 ₽", value: "over_500k", base: 600000 }
-                ]
-            },
-            {
-                id: 5,
-                title: "Ваш опыт с AI-инструментами",
-                options: [
-                    { text: "Никогда не использовал", value: "none", multiplier: 1.0, timeMultiplier: 1.2 },
-                    { text: "Пробовал ChatGPT/Midjourney", value: "basic", multiplier: 1.1, timeMultiplier: 1.1 },
-                    { text: "Регулярно использую для работы", value: "regular", multiplier: 1.3, timeMultiplier: 0.9 },
-                    { text: "Активно изучаю новые AI-инструменты", value: "advanced", multiplier: 1.5, timeMultiplier: 0.8 },
-                    { text: "Обучаю других работе с AI", value: "expert", multiplier: 1.7, timeMultiplier: 0.7 }
-                ]
-            },
-            {
-                id: 6,
-                title: "Готовы ли вы продавать свои услуги?",
-                options: [
-                    { text: "Нет, предпочитаю работать в штате", value: "no_sales", track: "employment", multiplier: 1.0 },
-                    { text: "Готов работать с готовыми клиентами", value: "ready_clients", track: "b2b", multiplier: 1.3 },
-                    { text: "Готов искать и привлекать клиентов", value: "sales_ready", track: "b2b", multiplier: 1.6 },
-                    { text: "Хочу развивать собственный бизнес", value: "business_ready", track: "entrepreneur", multiplier: 2.0 }
-                ]
-            },
-            {
-                id: 7,
-                title: "Какие направления вам интересны?",
-                multiple: true,
-                options: [
-                    { text: "E-commerce (карточки товаров, баннеры)", value: "ecommerce", multiplier: 1.4 },
-                    { text: "Рекламные креативы", value: "ads", multiplier: 1.5 },
-                    { text: "Архитектурная визуализация", value: "archviz", multiplier: 1.6 },
-                    { text: "Портреты и персонажи", value: "portraits", multiplier: 1.3 },
-                    { text: "Концепт-арт", value: "concept", multiplier: 1.4 },
-                    { text: "Продуктовая фотография", value: "product_photo", multiplier: 1.5 },
-                    { text: "Социальные сети", value: "social", multiplier: 1.2 }
-                ]
-            },
-            {
-                id: 8,
-                title: "Какой доход вас бы мотивировал?",
-                options: [
-                    { text: "+20-30% к текущему доходу", value: "modest", target: 1.25 },
-                    { text: "+50-70% к текущему доходу", value: "good", target: 1.6 },
-                    { text: "Удвоить текущий доход", value: "double", target: 2.0 },
-                    { text: "Утроить текущий доход", value: "triple", target: 3.0 },
-                    { text: "Хочу зарабатывать 500к+ в месяц", value: "high", target: 4.0 }
-                ]
-            }
+            { id: 1, title: "Ваш текущий статус в дизайне", options: [
+                { text: "Студент / начинающий (изучаю основы)", value: "student", multiplier: 1.0 },
+                { text: "Junior дизайнер (до 2 лет опыта)", value: "junior", multiplier: 1.2 },
+                { text: "Middle дизайнер (2-5 лет опыта)", value: "middle", multiplier: 1.5 },
+                { text: "Senior дизайнер (5+ лет опыта)", value: "senior", multiplier: 1.8 },
+                { text: "Арт-директор / Lead", value: "lead", multiplier: 2.0 }
+            ]},
+            { id: 2, title: "Ваша основная специализация", options: [
+                { text: "UX/UI дизайн", value: "ux_ui", multiplier: 1.3 },
+                { text: "Веб-дизайн", value: "web", multiplier: 1.2 },
+                { text: "Графический дизайн", value: "graphic", multiplier: 1.1 },
+                { text: "Иллюстрация", value: "illustration", multiplier: 1.4 },
+                { text: "Брендинг", value: "branding", multiplier: 1.5 },
+                { text: "Моушн-дизайн", value: "motion", multiplier: 1.6 },
+                { text: "Продуктовый дизайн", value: "product", multiplier: 1.7 }
+            ]},
+            { id: 3, title: "Как вы сейчас работаете?", options: [
+                { text: "В штате компании", value: "employment", track: "employment", multiplier: 1.2 },
+                { text: "Фрилансер (работаю с разными клиентами)", value: "freelance", track: "b2b", multiplier: 1.5 },
+                { text: "В агентстве/студии", value: "agency", track: "b2b", multiplier: 1.4 },
+                { text: "Собственный бизнес/услуги", value: "business", track: "entrepreneur", multiplier: 2.0 },
+                { text: "Пока не работаю в дизайне", value: "none", track: "employment", multiplier: 1.0 }
+            ]},
+            { id: 4, title: "Ваш примерный доход в месяц", options: [
+                { text: "До 50 000 ₽", value: "under_50k", base: 35000 },
+                { text: "50 000 - 100 000 ₽", value: "50_100k", base: 75000 },
+                { text: "100 000 - 200 000 ₽", value: "100_200k", base: 150000 },
+                { text: "200 000 - 350 000 ₽", value: "200_350k", base: 275000 },
+                { text: "350 000 - 500 000 ₽", value: "350_500k", base: 425000 },
+                { text: "Свыше 500 000 ₽", value: "over_500k", base: 600000 }
+            ]},
+            { id: 5, title: "Ваш опыт с AI-инструментами", options: [
+                { text: "Никогда не использовал", value: "none", multiplier: 1.0, timeMultiplier: 1.2 },
+                { text: "Пробовал ChatGPT/Midjourney", value: "basic", multiplier: 1.1, timeMultiplier: 1.1 },
+                { text: "Регулярно использую для работы", value: "regular", multiplier: 1.3, timeMultiplier: 0.9 },
+                { text: "Активно изучаю новые AI-инструменты", value: "advanced", multiplier: 1.5, timeMultiplier: 0.8 },
+                { text: "Обучаю других работе с AI", value: "expert", multiplier: 1.7, timeMultiplier: 0.7 }
+            ]},
+            { id: 6, title: "Готовы ли вы продавать свои услуги?", options: [
+                { text: "Нет, предпочитаю работать в штате", value: "no_sales", track: "employment", multiplier: 1.0 },
+                { text: "Готов работать с готовыми клиентами", value: "ready_clients", track: "b2b", multiplier: 1.3 },
+                { text: "Готов искать и привлекать клиентов", value: "sales_ready", track: "b2b", multiplier: 1.6 },
+                { text: "Хочу развивать собственный бизнес", value: "business_ready", track: "entrepreneur", multiplier: 2.0 }
+            ]},
+            { id: 7, title: "Какие направления вам интересны?", multiple: true, options: [
+                { text: "E-commerce (карточки товаров, баннеры)", value: "ecommerce", multiplier: 1.4 },
+                { text: "Рекламные креативы", value: "ads", multiplier: 1.5 },
+                { text: "Архитектурная визуализация", value: "archviz", multiplier: 1.6 },
+                { text: "Портреты и персонажи", value: "portraits", multiplier: 1.3 },
+                { text: "Концепт-арт", value: "concept", multiplier: 1.4 },
+                { text: "Продуктовая фотография", value: "product_photo", multiplier: 1.5 },
+                { text: "Социальные сети", value: "social", multiplier: 1.2 }
+            ]},
+            { id: 8, title: "Какой доход вас бы мотивировал?", options: [
+                { text: "+20-30% к текущему доходу", value: "modest", target: 1.25 },
+                { text: "+50-70% к текущему доходу", value: "good", target: 1.6 },
+                { text: "Удвоить текущий доход", value: "double", target: 2.0 },
+                { text: "Утроить текущий доход", value: "triple", target: 3.0 },
+                { text: "Хочу зарабатывать 500к+ в месяц", value: "high", target: 4.0 }
+            ]}
         ];
 
         let currentQuestion = 0;
@@ -290,13 +329,13 @@
                 <div class="space-y-3">
             `;
 
-            question.options.forEach((option, optionIndex) => {
+            question.options.forEach((option) => {
                 const isSelected = question.multiple ? 
                     (answers[question.id] && answers[question.id].includes(option.value)) :
                     answers[question.id] === option.value;
                 
                 html += `
-                    <button class="option-button w-full p-4 text-left bg-gray-700 hover:bg-gray-600 rounded-xl transition-colors ${isSelected ? 'selected' : ''}" 
+                    <button class="option-button w-full p-4 text-left rounded-xl transition-colors ${isSelected ? 'selected' : ''}" 
                             onclick="selectOption(${question.id}, '${option.value}', ${question.multiple || false})">
                         <div class="flex items-center">
                             <div class="w-6 h-6 border-2 border-gray-400 rounded-full mr-4 flex items-center justify-center">
@@ -319,15 +358,11 @@
             if (isMultiple) {
                 if (!answers[questionId]) answers[questionId] = [];
                 const index = answers[questionId].indexOf(value);
-                if (index > -1) {
-                    answers[questionId].splice(index, 1);
-                } else {
-                    answers[questionId].push(value);
-                }
+                if (index > -1) { answers[questionId].splice(index, 1); }
+                else { answers[questionId].push(value); }
             } else {
                 answers[questionId] = value;
             }
-            
             showQuestion(currentQuestion);
         }
 
@@ -340,16 +375,15 @@
         function updateNavigation() {
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
-            
             prevBtn.disabled = currentQuestion === 0;
-            
+
             const currentQ = questions[currentQuestion];
             const hasAnswer = currentQ.multiple ? 
                 (answers[currentQ.id] && answers[currentQ.id].length > 0) :
                 answers[currentQ.id] !== undefined;
-            
+
             nextBtn.disabled = !hasAnswer;
-            
+
             if (currentQuestion === questions.length - 1) {
                 nextBtn.textContent = 'Показать результат';
                 nextBtn.innerHTML = 'Показать результат<i class="fas fa-chart-line ml-2"></i>';
@@ -407,18 +441,11 @@
             const income6months = Math.round(baseIncome * totalMultiplier * 0.7);
             const income12months = Math.round(baseIncome * totalMultiplier);
 
-            return {
-                income6months,
-                income12months,
-                recommendedTrack,
-                totalMultiplier,
-                timeMultiplier
-            };
+            return { income6months, income12months, recommendedTrack, totalMultiplier, timeMultiplier };
         }
 
         function showResults() {
             const results = calculateResults();
-            
             document.getElementById('quiz-container').style.display = 'none';
             document.querySelector('.flex.justify-between').style.display = 'none';
             document.getElementById('results-section').classList.remove('hidden');
@@ -452,45 +479,27 @@
             document.getElementById('timeline').innerHTML = timeline;
 
             const steps = getNextSteps(results.recommendedTrack);
-            document.getElementById('next-steps').innerHTML = steps.map((step, index) => 
-                `<li><strong>${index + 1}.</strong> ${step}</li>`
-            ).join('');
+            document.getElementById('next-steps').innerHTML = steps.map((step, index) => `<li><strong>${index + 1}.</strong> ${step}</li>`).join('');
         }
 
         function getRecommendedSkills() {
             const specialization = answers[2];
             const interests = answers[7] || [];
-            
             let skills = [
                 'Prompt-инжиниринг для генерации изображений',
                 'Обучение персональных AI-моделей'
             ];
-            
-            if (interests.includes('ecommerce') || interests.includes('product_photo')) {
-                skills.push('Продуктовая съемка без студии');
-            }
-            
-            if (interests.includes('portraits')) {
-                skills.push('Реалистичная обработка портретов');
-            }
-            
-            if (['ux_ui', 'web'].includes(specialization)) {
-                skills.push('AI-прототипирование интерфейсов');
-            }
-            
-            if (interests.includes('ads')) {
-                skills.push('Генерация рекламных креативов');
-            }
-            
+            if (interests.includes('ecommerce') || interests.includes('product_photo')) { skills.push('Продуктовая съемка без студии'); }
+            if (interests.includes('portraits')) { skills.push('Реалистичная обработка портретов'); }
+            if (['ux_ui', 'web'].includes(specialization)) { skills.push('AI-прототипирование интерфейсов'); }
+            if (interests.includes('ads')) { skills.push('Генерация рекламных креативов'); }
             skills.push('Мультиагентные системы для дизайна');
-            
             return skills.slice(0, 5);
         }
 
         function getTimeline(timeMultiplier) {
             const baseWeeks = Math.round(8 * timeMultiplier);
             const firstResultsWeeks = Math.round(4 * timeMultiplier);
-            
             return `
                 <div>• <strong>Первые результаты:</strong> ${firstResultsWeeks} недели</div>
                 <div>• <strong>Стабильный доход:</strong> ${baseWeeks} недель</div>
@@ -499,49 +508,22 @@
         }
 
         function getNextSteps(track) {
-            const commonSteps = [
-                'Изучите основы AI-генерации изображений',
-                'Создайте портфолио AI-работ'
-            ];
-            
+            const commonSteps = ['Изучите основы AI-генерации изображений','Создайте портфолио AI-работ'];
             const trackSteps = {
-                employment: [
-                    ...commonSteps,
-                    'Предложите пилотный проект на работе',
-                    'Подготовьте презентацию экономии времени',
-                    'Обсудите повышение с руководством'
-                ],
-                b2b: [
-                    ...commonSteps,
-                    'Определите нишу специализации',
-                    'Создайте прайс-лист услуг',
-                    'Найдите первых клиентов в агентствах'
-                ],
-                entrepreneur: [
-                    ...commonSteps,
-                    'Исследуйте рынок и конкурентов',
-                    'Создайте пакеты услуг',
-                    'Запустите рекламную кампанию'
-                ]
+                employment: [...commonSteps,'Предложите пилотный проект на работе','Подготовьте презентацию экономии времени','Обсудите повышение с руководством'],
+                b2b: [...commonSteps,'Определите нишу специализации','Создайте прайс-лист услуг','Найдите первых клиентов в агентствах'],
+                entrepreneur: [...commonSteps,'Исследуйте рынок и конкурентов','Создайте пакеты услуг','Запустите рекламную кампанию']
             };
-            
             return trackSteps[track] || commonSteps;
         }
 
         document.getElementById('prev-btn').addEventListener('click', () => {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                showQuestion(currentQuestion);
-            }
+            if (currentQuestion > 0) { currentQuestion--; showQuestion(currentQuestion); }
         });
 
         document.getElementById('next-btn').addEventListener('click', () => {
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                showQuestion(currentQuestion);
-            } else {
-                showResults();
-            }
+            if (currentQuestion < questions.length - 1) { currentQuestion++; showQuestion(currentQuestion); }
+            else { showResults(); }
         });
 
         showQuestion(0);
